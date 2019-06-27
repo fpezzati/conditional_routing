@@ -1,4 +1,4 @@
-function Head() {
+var Head = (function() {
   var eventbus;
   function login() {
     eventbus.publish({ type: "login", value: true });
@@ -23,4 +23,4 @@ function Head() {
       ]);
     }
   }
-}
+})();
