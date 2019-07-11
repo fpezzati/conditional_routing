@@ -21,12 +21,16 @@ var App = (function() {
       Foo.eventbus = EventBus;
       Bar.eventbus = EventBus;
       Hey.eventbus = EventBus;
+      Gantt.eventbus = EventBus;
       m.route(document.body, "/hey", {
         "/foo": {
           onmatch: function(args, requestedPath, route) { return isLoggedIn(Foo); }
         },
         "/bar": {
           onmatch: function(args, requestedPath, route) { return isLoggedIn(Bar); }
+        },
+        "/gantt": {
+          onmatch: function(args, requestedPath, route) { return isLoggedIn(Gantt); }
         },
         "/hey": Hey
       });

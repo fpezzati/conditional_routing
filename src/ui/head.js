@@ -18,6 +18,9 @@ var Head = (function() {
         m("button", { onclick: function() {
           m.route.set("/bar")
         } }, "bar"),
+        m("button", { onclick: function() {
+          m.route.set("/gantt")
+        } }, "gantt"),
         m("button", { onclick: login }, "login"),
         m("button", { onclick: logout }, "logout")
       ]);
