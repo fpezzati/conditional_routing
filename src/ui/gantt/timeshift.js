@@ -21,8 +21,7 @@ var TimeShift = (function(){
         m("div", [
           m("button", { onclick: addshift }, "+"),
           m("button", { onclick: removeshift }, "-")
-        ]) :
-        null
+        ]) : null
       ]);
     }
   }
