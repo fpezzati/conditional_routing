@@ -1,0 +1,7 @@
+div.gantt-board {
+  height: 200px;
+  width: 500px;
+  border-style: solid;
+  border-width: 1px;
+  position: relative;
+}
