@@ -1,6 +1,13 @@
 var Gantt = (function () {
   var shifts = [];
   var eventbus = {};
+  function handleDrop(item) {
+    item.preventDefault();
+    var shift = item.dataTransfer.getData("shift");
+  }
+  function handleDragOver(item) {
+    item.preventDefault();
+  }
   return {
     oncreate: function(vnode) {
       eventbus = this.eventbus;
@@ -20,7 +27,11 @@ var Gantt = (function () {
     view: function(vnode) {
       return m("div", [
         m(Head),
-        m("div", { class: "gantt-board" }, shifts.map(function(shift) {
+        m("div", {
+          class: "gantt-board",
+          ondrop: handleDrop,
+          ondragover: handleDragOver
+        }, shifts.map(function(shift) {
             return m(TimeShift, shift);
           })
         ),
