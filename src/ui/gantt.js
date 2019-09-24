@@ -4,6 +4,7 @@ var Gantt = (function () {
   function handleDrop(item) {
     item.preventDefault();
     var shift = item.dataTransfer.getData("shift");
+    console.log(JSON.stringify(shift));
   }
   function handleDragOver(item) {
     item.preventDefault();
