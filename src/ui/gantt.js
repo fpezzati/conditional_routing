@@ -2,7 +2,7 @@ var Gantt = (function () {
   var shifts = [];
   var eventbus = {};
   function handleDrop(item) {
-    item.preventDefault();
+//    item.preventDefault();
     var shift = item.dataTransfer.getData("shift");
     console.log(JSON.stringify(shift));
   }
@@ -12,15 +12,13 @@ var Gantt = (function () {
   return {
     oncreate: function(vnode) {
       eventbus = this.eventbus;
-      TimeShift.eventbus = this.eventbus;
       ShiftButtons.eventbus = this.eventbus;
       eventbus.subscribe({
         type: "addshift",
         handle: function(action) {
           var newShift = Object.create(TimeShift);
-          newShift.x = action.data.x;
-          newShift.y = action.data.y;
-          newShift.lasts = action.data.lasts;
+          newShift.eventbus = this.eventbus;
+          newShift.setTimeShift({x: action.data.x, y: action.data.y, lasts: action.data.lasts});
           shifts.push(newShift);
         }
       });
