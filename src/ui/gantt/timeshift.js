@@ -8,15 +8,13 @@ var TimeShift = (function(){
     item.preventDefault();
   }
   function handleDragStart(item) {
-    item.dataTransfer.setData("shift", timeshift);
+    item.dataTransfer.setData("shift", JSON.stringify(timeshift));
   }
   return {
     view: function(vnode) {
       return m("div", {
         class: "timeshift",
         style: {
-//          top: vnode.attrs.shift.y+"px" ,
-//          left: (vnode.attrs.shift.x + vnode.attrs.shift.lasts)+"px"
           top: timeshift.y+"px" ,
           left: (timeshift.x + timeshift.lasts)+"px"
         },

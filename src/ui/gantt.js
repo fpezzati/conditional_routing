@@ -2,12 +2,21 @@ var Gantt = (function () {
   var shifts = [];
   var eventbus = {};
   function handleDrop(item) {
-//    item.preventDefault();
-    var shift = item.dataTransfer.getData("shift");
-    console.log(JSON.stringify(shift));
+    var incomingShift = JSON.parse(item.dataTransfer.getData("shift"));
+    shifts.filter(shift => shift.id === incomingShift.id).forEach(shift => {
+      console.log("Shift found");
+      shift.x = item.pageX;
+      shift.y = item.pageY;
+    });
   }
   function handleDragOver(item) {
     item.preventDefault();
+  }
+  function getTimeShifts() {
+    return shifts;
+  }
+  function setTimeShifts(item) {
+    shifts = item;
   }
   return {
     oncreate: function(vnode) {
@@ -16,10 +25,16 @@ var Gantt = (function () {
       eventbus.subscribe({
         type: "addshift",
         handle: function(action) {
+          var s = {
+            id: uuidv5('shiftbuilder.edu.to.create', uuidv5.URL),
+            x: action.data.x,
+            y: action.data.y,
+            lasts: action.data.lasts
+          };
           var newShift = Object.create(TimeShift);
           newShift.eventbus = this.eventbus;
-          newShift.setTimeShift({x: action.data.x, y: action.data.y, lasts: action.data.lasts});
-          shifts.push(newShift);
+          newShift.setTimeShift(s);
+          shifts.push(s);
         }
       });
     },
