@@ -31,9 +31,9 @@ var Gantt = (function () {
             y: action.data.y,
             lasts: action.data.lasts
           };
-          var newShift = Object.create(TimeShift);
-          newShift.eventbus = this.eventbus;
-          newShift.setTimeShift(s);
+          //var newShift = Object.create(TimeShift);
+          //newShift.eventbus = this.eventbus;
+          //newShift.setTimeShift(s);
           shifts.push(s);
         }
       });
@@ -46,7 +46,9 @@ var Gantt = (function () {
           ondrop: handleDrop,
           ondragover: handleDragOver
         }, shifts.map(function(shift) {
-            return m(TimeShift, shift);
+            //shift.eventbus = this.eventbus;
+            TimeShift.setTimeShift(shift);
+            return m(TimeShift);
           })
         ),
         m(ShiftButtons)

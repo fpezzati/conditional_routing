@@ -5,6 +5,7 @@ var TimeShift = (function(){
     item.preventDefault();
   }
   function handleDragOver(item) {
+    console.log("handle drag over");
     item.preventDefault();
   }
   function handleDragStart(item) {
