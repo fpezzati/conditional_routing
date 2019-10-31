@@ -47,8 +47,9 @@ var Gantt = (function () {
           ondragover: handleDragOver
         }, shifts.map(function(shift) {
             //shift.eventbus = this.eventbus;
-            TimeShift.setTimeShift(shift);
-            return m(TimeShift);
+            timeShift = Object.create(TimeShift);
+            timeShift.setTimeShift(shift);
+            return m(timeShift);
           })
         ),
         m(ShiftButtons)
