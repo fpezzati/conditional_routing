@@ -17,7 +17,8 @@ var Gantt = (function () {
       return m("div", [
         m(Head),
         m("div", shifts.map(function(shift) {
-            return m(TimeShift, shift);
+//            return m(TimeShift, shift);
+            return m("div", JSON.stringify(shift));
           })
         ),
         m(ShiftButtons)
