@@ -1,6 +1,6 @@
 div.timeshift {
   background-color: green;
-  border-style: solid;
-  height: 10px;
+  height: 15px;
   width: 50px;
+  position: absolute;
 }

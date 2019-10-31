@@ -1,28 +1,32 @@
 var TimeShift = (function(){
-  var starts, ends = 0;
-  var displaybuttons = false;
-  function showShiftButtonBar() {
-    displaybuttons = true;
-    window.setTimeout(function() {
-      displaybuttons = false;
-    }, 2000);
+  var timeshift;
+  function handleDrop(item) {
+    console.log(JSON.stringify(item));
+    item.preventDefault();
   }
-  function addshift() {
-    console.log("addshift");
+  function handleDragOver(item) {
+    console.log("handle drag over");
+    item.preventDefault();
   }
-  function removeshift() {
-    console.log("removeshift");
+  function handleDragStart(item) {
+    item.dataTransfer.setData("shift", JSON.stringify(timeshift));
   }
   return {
     view: function(vnode) {
-      return m("div", [
-        m("div", { class: "timeshift", onmouseover: showShiftButtonBar }, "shift"),
-        displaybuttons ?
-        m("div", [
-          m("button", { onclick: addshift }, "+"),
-          m("button", { onclick: removeshift }, "-")
-        ]) : null
-      ]);
+      return m("div", {
+        class: "timeshift",
+        style: {
+          top: timeshift.y+"px" ,
+          left: (timeshift.x + timeshift.lasts)+"px"
+        },
+        ondrop: handleDrop,
+        ondragover: handleDragOver,
+        ondragstart: handleDragStart,
+        draggable: "true"
+      }, "shift");
+    },
+    setTimeShift: function(val) {
+      timeshift = val;
     }
   }
 })();

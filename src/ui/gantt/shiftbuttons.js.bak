@@ -2,8 +2,7 @@ var ShiftButtons = (function() {
   var eventbus = {};
   function addshift() {
     eventbus.publish({
-        type: "addshift",
-        data: { "x": 200, "y": 200, "lasts": 100 }
+      type: "addshift"
     });
   }
   return {
