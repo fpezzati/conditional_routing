@@ -13,6 +13,7 @@ var TimeShift = (function(){
   }
   return {
     view: function(vnode) {
+      timeshift = vnode.attrs;
       return m("div", {
         class: "timeshift",
         style: {

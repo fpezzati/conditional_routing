@@ -26,7 +26,7 @@ var Gantt = (function () {
         type: "addshift",
         handle: function(action) {
           var s = {
-            id: uuidv5('shiftbuilder.edu.to.create', uuidv5.URL),
+            id: uuidv5(Math.random().toString(36), uuidv5.URL),
             x: action.data.x,
             y: action.data.y,
             lasts: action.data.lasts
@@ -42,12 +42,17 @@ var Gantt = (function () {
           class: "gantt-board",
           ondrop: handleDrop,
           ondragover: handleDragOver
-        }, shifts.map(function(shift) {
-//            var timeShift = Object.create(TimeShift);
-//            timeShift.setTimeShift(shift);
-//            return m(timeShift);
+          }, shifts.map(function(shift) {
+/*
+            var timeShift = Object.create(TimeShift);
+            timeShift.setTimeShift(shift);
+            return m(timeShift);
+*/
+            return m(TimeShift, shift)
+          }),
+        m("div", shifts.map(function(shift) {
             return m("div", JSON.stringify(shift));
-          })
+          }))
         ),
         m(ShiftButtons)
       ]);
