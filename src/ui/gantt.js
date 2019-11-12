@@ -5,8 +5,8 @@ var Gantt = (function () {
     var incomingShift = JSON.parse(item.dataTransfer.getData("shift"));
     shifts.filter(shift => shift.id === incomingShift.id).forEach(shift => {
       console.log("Shift found");
-      shift.x = item.pageX;
-      shift.y = item.pageY;
+      shift.x = item.pageX - item.target.offsetLeft;
+      shift.y = item.pageY - item.target.offsetTop;
     });
   }
   function handleDragOver(item) {
@@ -43,17 +43,14 @@ var Gantt = (function () {
           ondrop: handleDrop,
           ondragover: handleDragOver
           }, shifts.map(function(shift) {
-/*
-            var timeShift = Object.create(TimeShift);
-            timeShift.setTimeShift(shift);
-            return m(timeShift);
-*/
             return m(TimeShift, shift)
           }),
+        /* this is about debug purpose only.
         m("div", shifts.map(function(shift) {
             return m("div", JSON.stringify(shift));
           }))
         ),
+        */
         m(ShiftButtons)
       ]);
     }

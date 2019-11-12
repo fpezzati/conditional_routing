@@ -18,7 +18,7 @@ var TimeShift = (function(){
         class: "timeshift",
         style: {
           top: timeshift.y+"px" ,
-          left: (timeshift.x + timeshift.lasts)+"px"
+          left: timeshift.x+"px"
         },
         ondrop: handleDrop,
         ondragover: handleDragOver,
