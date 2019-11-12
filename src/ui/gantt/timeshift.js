@@ -11,6 +11,9 @@ var TimeShift = (function(){
   function handleDragStart(item) {
     item.dataTransfer.setData("shift", JSON.stringify(timeshift));
   }
+  function handleResize() {
+    console.log("resize happened.");
+  }
   return {
     view: function(vnode) {
       timeshift = vnode.attrs;
@@ -23,6 +26,7 @@ var TimeShift = (function(){
         ondrop: handleDrop,
         ondragover: handleDragOver,
         ondragstart: handleDragStart,
+        onresize: handleResize,
         draggable: "true"
       }, "shift");
     },

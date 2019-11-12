@@ -3,4 +3,6 @@ div.timeshift {
   height: 15px;
   width: 50px;
   position: absolute;
+  resize: horizontal;
+  overflow: hidden;
 }

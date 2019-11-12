@@ -7,6 +7,8 @@ var Gantt = (function () {
       console.log("Shift found");
       shift.x = item.pageX - item.target.offsetLeft;
       shift.y = item.pageY - item.target.offsetTop;
+      if(shift.x < 0) shift.x = 0;
+      if(shift.y < 0) shift.y = 0;
     });
   }
   function handleDragOver(item) {
@@ -49,8 +51,8 @@ var Gantt = (function () {
         m("div", shifts.map(function(shift) {
             return m("div", JSON.stringify(shift));
           }))
-        ),
         */
+        ),
         m(ShiftButtons)
       ]);
     }
