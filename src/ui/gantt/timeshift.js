@@ -11,17 +11,16 @@ var TimeShift = (function(){
   function handleDragStart(item) {
     item.dataTransfer.setData("shift", JSON.stringify(timeshift));
   }
-  function initResizeObserver() {
-    new ResizeObserver(handleResize).observe(document.getElementById(timeshift.id));
-  }
   function handleResize(shift) {
     console.log("resize happened.");
     if(shift && shift.contentRect) timeshift.lasts = shift.contentRect.width;
   }
   return {
+    oncreate: function(vnode) {
+      new ResizeObserver(handleResize).observe(document.getElementById(timeshift.id));
+    },
     view: function(vnode) {
       timeshift = vnode.attrs;
-      setTimeout(initResizeObserver, 500);
       return m("div", {
         id: timeshift.id,
         class: "timeshift",
